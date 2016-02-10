@@ -1,6 +1,7 @@
 using Nancy;
 using PlacesWeveBeen.Objects;
 using System.Collections.Generic;
+using PlacesWeveBeen.Images;
 
 namespace PlacesWeveBeen
 {
@@ -19,7 +20,8 @@ namespace PlacesWeveBeen
         return View["place_form.cshtml"];
       };
       Post["/places"] = _ => {
-        Place newPlace = new Place(Request.Form["new-place"], Request.Form["new-description"]);
+        Image image  =  new Image(Request.Form["new-image"]);
+        Place newPlace = new Place(Request.Form["new-place"], Request.Form["new-description"],image);
         List<Place> allPlaces = Place.GetAll();
         return View["places.cshtml", allPlaces];
       };
